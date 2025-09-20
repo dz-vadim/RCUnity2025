@@ -12,7 +12,11 @@ public class SnakeController : MonoBehaviour
     private List<Transform> tail = new List<Transform>();
     private bool isFoodEaten;
     private Vector2 lBorderPos, rBorderPos, uBorderPos, dBorderPos;
-
+    
+    private GameController gameController;
+    private bool isGameOver, canTurn;
+    private float turnTime;
+    
     void Start()
     {
         currentAngleZ = 0.0f;
@@ -22,10 +26,22 @@ public class SnakeController : MonoBehaviour
         rBorderPos = GameObject.Find("WallRight").transform.position;
         uBorderPos = GameObject.Find("WallUp").transform.position;
         dBorderPos = GameObject.Find("WallDown").transform.position;
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        turnTime = Time.time;
+        isGameOver = false;
         InvokeRepeating("Movement", 0.1f, stepRate);
         SpawnFood();
     }
     void Update()
+    {
+        if (!food)
+        {
+            SpawnFood();
+        }
+        SnakeBehavior(90);
+    }
+
+    private void SnakeBehavior(float prevAngleZ)
     {
         SetDirection();
         transform.localEulerAngles = new Vector3(0.0f, 0.0f, currentAngleZ);
@@ -34,9 +50,10 @@ public class SnakeController : MonoBehaviour
             move = Vector2.up;
         }
 
-        if (!food)
+        if (prevAngleZ != currentAngleZ)
         {
-            SpawnFood();
+            turnTime =  Time.time;
+            canTurn = false;
         }
     }
     private void SpawnFood()
@@ -66,19 +83,33 @@ public class SnakeController : MonoBehaviour
     }
     void SetDirection()
     {
-        if(Input.GetKeyDown(KeyCode.D) && currentAngleZ != 90.0f)
+        if (canTurn)
         {
-            currentAngleZ = 270.0f;
-        }if(Input.GetKeyDown(KeyCode.A) && currentAngleZ != 270.0f)
-        {
-            currentAngleZ = 90.0f;
-        }if(Input.GetKeyDown(KeyCode.W) && currentAngleZ != 180.0f)
-        {
-            currentAngleZ = 0.0f;
-        }if(Input.GetKeyDown(KeyCode.S) && currentAngleZ != 0.0f)
-        {
-            currentAngleZ = 180.0f;
+            if(Input.GetKeyDown(KeyCode.D) && currentAngleZ != 90.0f)
+            {
+                currentAngleZ = 270.0f;
+            }if(Input.GetKeyDown(KeyCode.A) && currentAngleZ != 270.0f)
+            {
+                currentAngleZ = 90.0f;
+            }if(Input.GetKeyDown(KeyCode.W) && currentAngleZ != 180.0f)
+            {
+                currentAngleZ = 0.0f;
+            }if(Input.GetKeyDown(KeyCode.S) && currentAngleZ != 0.0f)
+            {
+                currentAngleZ = 180.0f;
+            }
         }
+    }
+
+    private void Restart()
+    {
+        for (int i = 0; i < tail.Count; i++)
+        {
+            Destroy(tail[i].gameObject);
+        }
+        tail.Clear();
+        transform.position = Vector2.zero;
+        canTurn = true;
     }
      void OnTriggerEnter2D(Collider2D collision)
     {
