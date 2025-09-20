@@ -4,6 +4,7 @@ public class EnemyNavMovement : MonoBehaviour
 {
     private Vector3 _finishPoint;
     private NavMeshAgent _agent;
+    
     private EnemySettings _settings;
     private void Awake()
     {
