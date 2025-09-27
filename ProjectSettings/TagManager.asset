@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - snake
   - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
