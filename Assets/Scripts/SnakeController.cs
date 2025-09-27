@@ -14,7 +14,7 @@ public class SnakeController : MonoBehaviour
     private Vector2 lBorderPos, rBorderPos, uBorderPos, dBorderPos;
     
     private GameController gameController;
-    private bool isGameOver, canTurn;
+    private bool isGameOver, canTurn = true;
     private float turnTime;
     
     void Start()
@@ -53,7 +53,7 @@ public class SnakeController : MonoBehaviour
         if (prevAngleZ != currentAngleZ)
         {
             turnTime =  Time.time;
-            canTurn = false;
+            canTurn = true;
         }
     }
     private void SpawnFood()
@@ -80,27 +80,50 @@ public class SnakeController : MonoBehaviour
             tail.Insert(0, tail.Last());
             tail.RemoveAt(tail.Count - 1);
         }
+        canTurn = true;
     }
     void SetDirection()
     {
         if (canTurn)
         {
-            if(Input.GetKeyDown(KeyCode.D) && currentAngleZ != 90.0f)
-            {
-                currentAngleZ = 270.0f;
-            }if(Input.GetKeyDown(KeyCode.A) && currentAngleZ != 270.0f)
-            {
-                currentAngleZ = 90.0f;
-            }if(Input.GetKeyDown(KeyCode.W) && currentAngleZ != 180.0f)
-            {
-                currentAngleZ = 0.0f;
-            }if(Input.GetKeyDown(KeyCode.S) && currentAngleZ != 0.0f)
-            {
-                currentAngleZ = 180.0f;
-            }
+            DesktopController();
+            MobileController();
         }
     }
 
+    private void DesktopController()
+    {
+        if(Input.GetKeyDown(KeyCode.D) && currentAngleZ != 90.0f)
+        {
+            currentAngleZ = 270.0f;
+        }if(Input.GetKeyDown(KeyCode.A) && currentAngleZ != 270.0f)
+        {
+            currentAngleZ = 90.0f;
+        }if(Input.GetKeyDown(KeyCode.W) && currentAngleZ != 180.0f)
+        {
+            currentAngleZ = 0.0f;
+        }if(Input.GetKeyDown(KeyCode.S) && currentAngleZ != 0.0f)
+        {
+            currentAngleZ = 180.0f;
+        }
+    }
+
+    private void MobileController()
+    {
+        if(Input.GetTouch(0).deltaPosition.x > 0f && currentAngleZ != 90.0f)
+        {
+            currentAngleZ = 270.0f;
+        }if(Input.GetTouch(0).deltaPosition.x < 0f && currentAngleZ != 270.0f)
+        {
+            currentAngleZ = 90.0f;
+        }if(Input.GetTouch(0).deltaPosition.y > 0f && currentAngleZ != 180.0f)
+        {
+            currentAngleZ = 0.0f;
+        }if(Input.GetTouch(0).deltaPosition.y < 0f && currentAngleZ != 0.0f)
+        {
+            currentAngleZ = 180.0f;
+        }
+    }
     private void Restart()
     {
         for (int i = 0; i < tail.Count; i++)
