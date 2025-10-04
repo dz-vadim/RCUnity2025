@@ -5,6 +5,7 @@ public class BulletScript : MonoBehaviour
 {
     [SerializeField] private float speed = 3f;
     private Rigidbody rb;
+    [SerializeField] private uint damage = 1;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>(); 
@@ -19,7 +20,7 @@ public class BulletScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject);
+            other.GetComponent<EnemySettings>().Damage(damage);
         } 
         Destroy(gameObject);
     }

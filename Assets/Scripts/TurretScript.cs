@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurretScript : MonoBehaviour
@@ -14,6 +12,7 @@ public class TurretScript : MonoBehaviour
     [SerializeField] private float countdown;
     private bool isSecondBarrel = false;
     private bool canShoot = true;
+    [SerializeField] private float turnSpeed = 2f;
     
     private void OnDrawGizmosSelected()
     {
@@ -26,9 +25,17 @@ public class TurretScript : MonoBehaviour
     }
     private void Update()
     {
-        if (target)
+       Look();
+    }
+    private void Look()
+    {
+         if (target)
         {
-            transform.LookAt(target);
+            Quaternion targetRotation = Quaternion.LookRotation(
+                target.position - transform.position);
+            transform.rotation = Quaternion.Lerp(
+                transform.rotation, targetRotation, Time.deltaTime  * turnSpeed);
+            
             if (canShoot)
             {
                 if (isSecondBarrel) StartCoroutine(Shoot(0));
