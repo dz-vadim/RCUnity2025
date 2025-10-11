@@ -232,6 +232,7 @@ MonoBehaviour:
   - {fileID: 7718579464253211118}
   countdown: 1
   turnSpeed: 15
+  fxPrefab: {fileID: 2504214343621411470, guid: f0d46143089ed2f4ea4f882a6e3f4bd2, type: 3}
 --- !u!4 &8920181438638393366 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 134438074a2ada742b81e0e71313b417, type: 3}

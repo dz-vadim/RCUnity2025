@@ -13,6 +13,7 @@ public class TurretScript : MonoBehaviour
     private bool isSecondBarrel = false;
     private bool canShoot = true;
     [SerializeField] private float turnSpeed = 2f;
+    [SerializeField] private GameObject fxPrefab;
     
     private void OnDrawGizmosSelected()
     {
@@ -47,6 +48,7 @@ public class TurretScript : MonoBehaviour
     IEnumerator Shoot(int barrelNumber)
     {
         GameObject bullet = Instantiate(bulletPrefab, gunBarrel[barrelNumber].transform);
+        Instantiate(fxPrefab, gunBarrel[barrelNumber].transform);
         bullet.transform.position = gunBarrel[barrelNumber].transform.position;
         BulletScript bulletScript = bullet.GetComponent<BulletScript>();
         bulletScript.TakeForce(target);
