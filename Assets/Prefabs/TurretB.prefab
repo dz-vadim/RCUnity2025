@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7240813292352444841}
   m_Layer: 0
-  m_Name: Barrel Left
+  m_Name: Barrel
   m_TagString: Untagged
-  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -24,43 +24,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3226580568392675892}
   m_LocalRotation: {x: -0.00000008146034, y: -0.0000003019916, z: 2.4600339e-14, w: 1}
-  m_LocalPosition: {x: 0.095, y: 0.164, z: 0.327}
+  m_LocalPosition: {x: -0.002, y: 0.175, z: 0.361}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8920181438638393366}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7718579464253211118
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3573215312679945500}
-  m_Layer: 0
-  m_Name: Barrel Right
-  m_TagString: Untagged
-  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3573215312679945500
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7718579464253211118}
-  m_LocalRotation: {x: -0.00000008146034, y: -0.0000003019916, z: 2.4600339e-14, w: 1}
-  m_LocalPosition: {x: -0.093, y: 0.162, z: 0.327}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8920181438638393366}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8106771168301678014
 GameObject:
@@ -74,7 +43,7 @@ GameObject:
   - component: {fileID: 5504808682774374561}
   - component: {fileID: 7746742339616398443}
   m_Layer: 0
-  m_Name: TurretA
+  m_Name: TurretB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1bd571d34a97d174cbfa310d8aa65f1c, type: 2}
+  - {fileID: 2100000, guid: 90b72daf2c7690144b474233a1455607, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -200,7 +169,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 134438074a2ada742b81e0e71313b417, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1bd571d34a97d174cbfa310d8aa65f1c, type: 2}
+      objectReference: {fileID: 2100000, guid: 90b72daf2c7690144b474233a1455607, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 134438074a2ada742b81e0e71313b417, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -7307114618920296511, guid: 5611d5e3fd8f1d04893351065f90ab29, type: 3}
     - target: {fileID: 919132149155446097, guid: 134438074a2ada742b81e0e71313b417, type: 3}
       propertyPath: m_Name
       value: Weapon
@@ -229,7 +202,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 9102747093113538180, guid: 127ed9aa45aae894a89e9904fafe890d, type: 3}
   gunBarrel:
   - {fileID: 3226580568392675892}
-  - {fileID: 7718579464253211118}
   countdown: 1
   turnSpeed: 15
   fxPrefab: {fileID: 2504214343621411470, guid: f0d46143089ed2f4ea4f882a6e3f4bd2, type: 3}

@@ -9,6 +9,9 @@ public class BuildManager : MonoBehaviour
     [SerializeField] private Color startColor;
     private GameObject tempObject;
     [SerializeField] private GameObject[] turrets;
+    private bool canBuild = false;
+    private int turretIndex;
+    private int cost;
 
     private void Start()
     {
@@ -22,7 +25,7 @@ public class BuildManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider.tag == "Node")
+            if (hit.collider.tag == "Node" && canBuild)
             {
                 if (tempObject)
                 {
@@ -33,8 +36,16 @@ public class BuildManager : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     tempObject.GetComponent<NodeBuildSettings>().StartBuild(turrets, 0, 0.34f);
+                    canBuild = false;
                 }
             }
         }
+    }
+
+    public void SetBuildTurret(int buildIndex, int buildCost)
+    {
+        turretIndex = buildIndex;
+        cost = buildCost;
+        canBuild = true;
     }
 }
