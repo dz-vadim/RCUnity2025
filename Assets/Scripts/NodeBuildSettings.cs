@@ -11,9 +11,9 @@ public class NodeBuildSettings : MonoBehaviour
         return structure;
     }
 
-    public void StartBuild(GameObject[] structures, int structureIndex, float height)
+    public void StartBuild(GameObject[] structures, int structureIndex, float height, int cost)
     {
-        if (!structure)
+        if (!structure && FindObjectOfType<CoinController>().SpendCoin(cost))
         {
             Vector3 position = transform.position;
             position.y += height;

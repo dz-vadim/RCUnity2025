@@ -15,7 +15,7 @@ public class ButtonShopSettings : MonoBehaviour
         costText.text = cost.ToString();
         BuildManager manager = FindObjectOfType<BuildManager>();
         GetComponent<Button>().onClick.AddListener(
-            () => manager.SetBuildTurret(cost, buildIndex)
+            () => manager.SetBuildTurret(buildIndex, cost)
             );
     }
 }

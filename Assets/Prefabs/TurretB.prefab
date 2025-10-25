@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 2
-  bulletPrefab: {fileID: 9102747093113538180, guid: 127ed9aa45aae894a89e9904fafe890d, type: 3}
+  bulletPrefab: {fileID: 9102747093113538180, guid: aeb28d8fd75bcc64e8043b71f5fe9d33, type: 3}
   gunBarrel:
   - {fileID: 3226580568392675892}
   countdown: 1

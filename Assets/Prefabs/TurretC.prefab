@@ -261,9 +261,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 2
-  bulletPrefab: {fileID: 9102747093113538180, guid: 127ed9aa45aae894a89e9904fafe890d, type: 3}
+  bulletPrefab: {fileID: 9102747093113538180, guid: 348602acc0ce09d4ba6f0bee71aa8b90, type: 3}
   gunBarrel:
   - {fileID: 3226580568392675892}
+  - {fileID: 6853905210931521632}
   - {fileID: 7718579464253211118}
   countdown: 1
   turnSpeed: 15

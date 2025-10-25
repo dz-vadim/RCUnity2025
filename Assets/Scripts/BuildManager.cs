@@ -35,7 +35,7 @@ public class BuildManager : MonoBehaviour
                 tempObject.GetComponent<MeshRenderer>().material.color = hoverColor;
                 if (Input.GetMouseButtonDown(0))
                 {
-                    tempObject.GetComponent<NodeBuildSettings>().StartBuild(turrets, 0, 0.34f);
+                    tempObject.GetComponent<NodeBuildSettings>().StartBuild(turrets, turretIndex, 0.34f, cost);
                     canBuild = false;
                 }
             }

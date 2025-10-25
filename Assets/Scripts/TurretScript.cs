@@ -10,10 +10,10 @@ public class TurretScript : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject[] gunBarrel;
     [SerializeField] private float countdown;
-    private bool isSecondBarrel = false;
     private bool canShoot = true;
     [SerializeField] private float turnSpeed = 2f;
     [SerializeField] private GameObject fxPrefab;
+    private int barrelNumber = 0;
     
     private void OnDrawGizmosSelected()
     {
@@ -39,8 +39,12 @@ public class TurretScript : MonoBehaviour
             
             if (canShoot)
             {
-                if (isSecondBarrel) StartCoroutine(Shoot(0));
-                else StartCoroutine(Shoot(1));
+                StartCoroutine(Shoot(barrelNumber));
+                barrelNumber++;
+                if (barrelNumber == gunBarrel.Length)
+                {
+                    barrelNumber = 0;
+                }
                 canShoot = !canShoot;
             }
         }
@@ -53,8 +57,6 @@ public class TurretScript : MonoBehaviour
         BulletScript bulletScript = bullet.GetComponent<BulletScript>();
         bulletScript.TakeForce(target);
         bullet.transform.parent = null;
-        isSecondBarrel = !isSecondBarrel;
-        
         yield return new WaitForSeconds(countdown);
         canShoot = !canShoot;
     }
