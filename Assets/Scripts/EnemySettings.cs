@@ -7,7 +7,7 @@ public class EnemySettings : MonoBehaviour
     [SerializeField] private uint health;
     [SerializeField] private float speed; 
     [SerializeField] private float acceleration;
-
+    [SerializeField] private int coinsForKill;
     public uint GetHealth()
     {
         return health;
@@ -32,6 +32,7 @@ public class EnemySettings : MonoBehaviour
         health -= damageValue;
         if (health <= 0)
         {
+            FindObjectOfType<CoinController>().EarnCoin(coinsForKill);
             Destroy(gameObject);
         }
     }

@@ -30,6 +30,7 @@ public class BuildManager : MonoBehaviour
                 if (tempObject)
                 {
                     tempObject.GetComponent<MeshRenderer>().material.color = startColor;
+                   
                 }
                 tempObject = hit.collider.gameObject;
                 tempObject.GetComponent<MeshRenderer>().material.color = hoverColor;
@@ -39,6 +40,11 @@ public class BuildManager : MonoBehaviour
                     canBuild = false;
                 }
             }
+
+            /*if (hit.collider.tag == "Turret" && Input.GetMouseButtonDown(1))
+            { 
+                Destroy(hit.collider.gameObject);
+            }*/
         }
     }
 

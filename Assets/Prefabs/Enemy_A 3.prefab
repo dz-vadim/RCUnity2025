@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 700012579132567161}
   - component: {fileID: 6759785121203576022}
   m_Layer: 0
-  m_Name: Enemy_A
+  m_Name: Enemy_A 3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0c2d13c3615510e4a8debaef5c39c3de, type: 2}
+  - {fileID: 2100000, guid: 49f3385eb1c319941be8623439f1eb49, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d516d6639dbc5d4d971b7aa15d97026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 9
   speed: 1
-  acceleration: 1
+  acceleration: 5
   coinsForKill: 10

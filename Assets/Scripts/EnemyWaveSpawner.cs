@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyWaveSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab; //змінну для префаба ворогів
+    [SerializeField] private GameObject[] enemyPrefabs; //змінну для префаба ворогів
+    [SerializeField] private GameObject[] enemyBossPrefabs; //змінну для префаба ворогів
     [SerializeField] private Transform spawnPoint;  //змінну для збереженя точки спавну
     [Header("Time between waves")]
     [SerializeField] private float countdown = 3f; //змінну для часу між хвилями
@@ -23,7 +25,12 @@ public class EnemyWaveSpawner : MonoBehaviour
         yield return new WaitForSeconds(countdown);
         for (int i = 0; i < waveNumber; i++)
         {
-            Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+            GameObject enemyForSpawn = enemyPrefabs[Random.Range(0, enemyPrefabs.Length - 1)];
+            if (waveNumber % 3 == 0)
+            {
+                enemyForSpawn = enemyBossPrefabs[Random.Range(0, enemyPrefabs.Length - 1)];
+            }
+            Instantiate(enemyForSpawn, spawnPoint.position, Quaternion.identity);
             yield return new WaitForSeconds(timeBetweenSpawnEnemy);
         }
 

@@ -4250,7 +4250,7 @@ GameObject:
   - component: {fileID: 1513959882}
   m_Layer: 0
   m_Name: EnemySpawnPoint
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4359,7 +4359,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31b7e991d60ee34fb0481d43e1f3060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 700012579132567104, guid: 1a14763db990d184abea26e66614af17, type: 3}
+  enemyPrefabs:
+  - {fileID: 700012579132567104, guid: 1bea3e0de3bebea439d867d15ccb488c, type: 3}
+  - {fileID: 700012579132567104, guid: ecf078ef2ec8bb641aecf5b12bbaf8af, type: 3}
+  - {fileID: 700012579132567104, guid: c985f7d07c08126408f7a37fbe476a2d, type: 3}
+  - {fileID: 700012579132567104, guid: 1a14763db990d184abea26e66614af17, type: 3}
+  enemyBossPrefabs:
+  - {fileID: 700012579132567104, guid: b06a32a1ac3b3804bbf486f700db364c, type: 3}
+  - {fileID: 700012579132567104, guid: ea66ff7b9993c154f8a7c208f3db934d, type: 3}
   spawnPoint: {fileID: 1513959880}
   countdown: 3
   timeBetweenSpawnEnemy: 1
