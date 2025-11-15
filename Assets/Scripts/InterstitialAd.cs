@@ -18,10 +18,17 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsShowListener, IUnityAdsLoa
         OnUnityAdsShowClick(string placementId) { }
     public void 
         OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState) { }
-    public void 
-        OnUnityAdsAdLoaded(string placementId) { isAdLoaded = true; }
-    public void 
-        OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message) { }
+
+    public void OnUnityAdsAdLoaded(string placementId)
+    {
+        isAdLoaded = true;
+        Debug.Log("Ad loading is complete");
+    }
+
+    public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
+    {
+        Debug.Log($"Ads error: {error}. Message: {message}");
+    }
 
     private void LoadAd()
     {
@@ -63,6 +70,7 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsShowListener, IUnityAdsLoa
             _adUnitId = _androidAdUnitId;
         }
         AdsInitializer.OnAdsInitialized.AddListener(LoadAd);
-        InvokeRepeating(nameof(ShowAd), 5f, 5f);
+        //InvokeRepeating(nameof(ShowAd), 5f, 5f);
+        LoadAd();
     }
 }

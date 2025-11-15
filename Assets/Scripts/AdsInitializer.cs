@@ -12,6 +12,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
     public void OnInitializationComplete()
     {
         OnAdsInitialized.Invoke();
+        Debug.Log("Ads initialized");
     }
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
     {
@@ -22,7 +23,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
         if (Application.platform == RuntimePlatform.IPhonePlayer) {_gameId =  _iOSGameId; }
         else {_gameId = _andriodGameId; }
 
-        if (!Advertisement.isInitialized && !Advertisement.isSupported)
+        if (!Advertisement.isInitialized && Advertisement.isSupported)
         {
             Advertisement.Initialize(_gameId, _isTestMode, this);
         }

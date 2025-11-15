@@ -8,7 +8,7 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 2
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -757,6 +757,10 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
     Unity Ads: 1
   luminIcon:
     m_Name: 
@@ -772,10 +776,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: bff62153-9658-48bf-8722-5b20aa651525
+  cloudProjectId: 2cb4a443-a843-4164-8d9f-b123f6e49515
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: RCUnity2025
+  projectName: TowerDef2025
   organizationId: robocode-test-organization-83c5e4f4-7a07-453c-90c9-90be40850f14
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
