@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -15,5 +16,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         print("Connected to lobby");
+        WindowManager.Layout.OpenLayout("MainMenu");
+        GameObject.Find("StatisticsText").GetComponent<TextMeshProUGUI>().text =
+            $"Players online: {PhotonNetwork.CountOfPlayersOnMaster}";
     }
 }
