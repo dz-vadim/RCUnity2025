@@ -28,7 +28,7 @@ public class EnemyWaveSpawner : MonoBehaviour
             GameObject enemyForSpawn = enemyPrefabs[Random.Range(0, enemyPrefabs.Length - 1)];
             if (waveNumber % 3 == 0)
             {
-                enemyForSpawn = enemyBossPrefabs[Random.Range(0, enemyPrefabs.Length - 1)];
+                enemyForSpawn = enemyBossPrefabs[Random.Range(0, enemyBossPrefabs.Length - 1)];
             }
             Instantiate(enemyForSpawn, spawnPoint.position, Quaternion.identity);
             yield return new WaitForSeconds(timeBetweenSpawnEnemy);
