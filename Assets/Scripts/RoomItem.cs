@@ -9,6 +9,11 @@ public class RoomItem : MonoBehaviour
     public void SetUp(RoomInfo info)
     {
         _info = info;
-        roomName.text = info.Name;
+        roomName.text = _info.Name;
+    }
+
+    public void OnClick()
+    {
+        ConnectionToServer.Instance.JoinRoom(this._info);
     }
 }
