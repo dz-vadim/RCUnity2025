@@ -13,6 +13,7 @@ public class ConnectionToServer : MonoBehaviourPunCallbacks
 	[SerializeField] private GameObject roomItemPrefab;
 	[SerializeField] private Transform transformPlayerList;
 	[SerializeField] private GameObject playerItemPrefab;
+	[SerializeField] private GameObject startGameButton;
 	
 	public void Awake()
 	{
@@ -35,6 +36,7 @@ public class ConnectionToServer : MonoBehaviourPunCallbacks
 	public override void OnJoinedRoom()
 	{
 		WindowManager.Layout.OpenLayout("GameRoom");
+		startGameButton.SetActive(PhotonNetwork.IsMasterClient);
 		roomName.text = PhotonNetwork.CurrentRoom.Name;
 		Player[] players = PhotonNetwork.PlayerList;
 		foreach (Transform child in transformPlayerList)
@@ -79,5 +81,10 @@ public class ConnectionToServer : MonoBehaviourPunCallbacks
 	public void JoinRoom(RoomInfo info)
 	{
 		PhotonNetwork.JoinRoom(info.Name);
+	}
+
+	public void ConnectToRandomRoom()
+	{
+		PhotonNetwork.JoinRandomRoom();
 	}
 }
