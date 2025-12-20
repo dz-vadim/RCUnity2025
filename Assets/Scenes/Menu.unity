@@ -878,8 +878,8 @@ MonoBehaviour:
   roomName: {fileID: 763155163}
   transformRoomList: {fileID: 986511819}
   roomItemPrefab: {fileID: 1443264178825703000, guid: 73ce1445fab05ca408d543066f07ebbc, type: 3}
-  transformPlayerList: {fileID: 0}
-  playerItemPrefab: {fileID: 0}
+  transformPlayerList: {fileID: 538465551}
+  playerItemPrefab: {fileID: 4190636811564620768, guid: 80c4a5e7251f4a84dba753b3f41fbdec, type: 3}
 --- !u!1 &633589408
 GameObject:
   m_ObjectHideFlags: 0
