@@ -22,6 +22,7 @@ public class ConnectionToServer : MonoBehaviourPunCallbacks
 	public override void OnConnectedToMaster()
 	{
 		PhotonNetwork.JoinLobby();
+		PhotonNetwork.AutomaticallySyncScene = true;
 		PhotonNetwork.NickName = $"Player {Random.Range(0, 10000)}";
 	}
 	public void CreateNewRoom()
@@ -86,5 +87,16 @@ public class ConnectionToServer : MonoBehaviourPunCallbacks
 	public void ConnectToRandomRoom()
 	{
 		PhotonNetwork.JoinRandomRoom();
+	}
+
+	public override void OnMasterClientSwitched(Player newMasterClient)
+	{
+		if (PhotonNetwork.IsMasterClient) startGameButton.SetActive(true);
+		else startGameButton.SetActive(false);
+	}
+
+	public void StartGameLevel(int levelIndex)
+	{
+		PhotonNetwork.LoadLevel(levelIndex);
 	}
 }
