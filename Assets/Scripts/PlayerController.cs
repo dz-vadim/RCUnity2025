@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using Photon.Pun;
-
+using System.IO;
 public class PlayerController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject playerCamera;
@@ -63,5 +63,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
             moveDirection * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed),
             ref _smoothMove,
             smoothTime);
+    }
+
+    public override void OnJoinedRoom()
+    {  
+        PhotonNetwork.Instantiate(Path.Combine("PlayerManager"), Vector3.zero, Quaternion.identity);
     }
 }
