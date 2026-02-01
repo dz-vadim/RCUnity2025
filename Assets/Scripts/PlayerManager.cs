@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviourPunCallbacks
 {
     private PhotonView _pnView;
+    private GameObject _controller;
     private void Awake()
     {
         _pnView = GetComponent<PhotonView>();
@@ -20,7 +21,13 @@ public class PlayerManager : MonoBehaviourPunCallbacks
 
     private void CreateController()
     {
-        PhotonNetwork.Instantiate(Path.Combine("PlayerController"), 
-                                    Vector3.zero, Quaternion.identity);
+        _controller = PhotonNetwork.Instantiate(Path.Combine("PlayerController"), 
+                                    Vector3.zero, Quaternion.identity, 0, new object[]{_pnView.ViewID});
+    }
+
+    private void Die()
+    {
+        PhotonNetwork.Destroy(_controller);
+        CreateController();
     }
 }

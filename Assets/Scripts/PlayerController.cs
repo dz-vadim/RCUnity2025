@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         if (!_pnView.IsMine)
         {
             Destroy(playerCamera);
+            Destroy(_rb);
         }
     }
 
@@ -36,8 +37,21 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
         Look();
         Move();
+        Jump();
     }
 
+    private void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)  && _isGround)
+        {
+            _rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
+    public void GroundState(bool isGround)
+    {
+        this._isGround = isGround;
+    }
     private void FixedUpdate()
     {
         if (!_pnView.IsMine)
@@ -67,6 +81,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {  
-        PhotonNetwork.Instantiate(Path.Combine("PlayerManager"), Vector3.zero, Quaternion.identity);
+        //PhotonNetwork.Instantiate(Path.Combine("PlayerManager"), Vector3.zero, Quaternion.identity);
+        print(PhotonNetwork.CurrentRoom.Players);
     }
 }
