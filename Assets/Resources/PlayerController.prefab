@@ -250,6 +250,9 @@ MonoBehaviour:
   mouseSensitivity: 10
   jumpForce: 7
   smoothTime: 0
+  items:
+  - {fileID: 5615723865358016131}
+  - {fileID: 6084069633794105742}
 --- !u!114 &7685189125397742630
 MonoBehaviour:
   m_ObjectHideFlags: 0

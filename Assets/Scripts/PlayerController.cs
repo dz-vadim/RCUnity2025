@@ -2,7 +2,9 @@ using System;
 using UnityEngine;
 using Photon.Pun;
 using System.IO;
-public class PlayerController : MonoBehaviourPunCallbacks
+using Photon.Realtime;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+public class PlayerController : MonoBehaviourPunCallbacks, IDamageble
 {
     [SerializeField] private GameObject playerCamera;
     [SerializeField] private float walkSpeed, sprintSpeed, mouseSensitivity, jumpForce, smoothTime;
@@ -13,10 +15,19 @@ public class PlayerController : MonoBehaviourPunCallbacks
     private Rigidbody _rb;
     private PhotonView _pnView;
 
+    [SerializeField] private Item[] items;
+    private int _itemIndex;
+    private int _prevItemIndex = -1;
+    
+    private float maxHealth = 100f;
+    private float currentHealth;
+    private PlayerManager _playerManager;
+    
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _pnView = GetComponent<PhotonView>();
+        _playerManager = PhotonView.Find((int)_pnView.InstantiationData[0]).GetComponent<PlayerManager>();
     }
 
     private void Start()
@@ -26,6 +37,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             Destroy(playerCamera);
             Destroy(_rb);
+        }
+        else
+        {
+            EquipItem(0);
         }
     }
 
@@ -38,6 +53,51 @@ public class PlayerController : MonoBehaviourPunCallbacks
         Look();
         Move();
         Jump();
+        SelectWeapon();
+        UseItem();
+    }
+
+    private void UseItem()
+    {
+        items[_itemIndex].Use();
+    }
+
+    private void SelectWeapon()
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (Input.GetKeyDown((i + 1).ToString()))
+            {
+                EquipItem(i);
+                break;
+            }
+        }
+    }
+
+    private void EquipItem(int  index)
+    {
+        if (index == _prevItemIndex)
+        {
+            return;
+        }
+        _itemIndex = index;
+        items[_itemIndex].itemGameObject.SetActive(true);
+        if (_prevItemIndex != -1)
+        {
+            items[_prevItemIndex].itemGameObject.SetActive(false);
+        }
+        _prevItemIndex = _itemIndex;
+        Hashtable hash =  new Hashtable();
+        hash.Add("index",  _itemIndex);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+    }
+
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+    {
+        if (!_pnView.IsMine && targetPlayer == _pnView.Owner)
+        {
+            EquipItem((int)changedProps["index"]);
+        }
     }
 
     private void Jump()
@@ -83,5 +143,21 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {  
         //PhotonNetwork.Instantiate(Path.Combine("PlayerManager"), Vector3.zero, Quaternion.identity);
         print(PhotonNetwork.CurrentRoom.Players);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        _pnView.RPC(nameof(RPC_Damage),  RpcTarget.All, damage);
+    }
+
+    [PunRPC]
+    void RPC_Damage(float damage)
+    {
+        if(!_pnView.IsMine) return;
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            _playerManager.Die();
+        }
     }
 }

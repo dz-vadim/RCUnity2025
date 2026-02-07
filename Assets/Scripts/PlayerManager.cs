@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks
                                     Vector3.zero, Quaternion.identity, 0, new object[]{_pnView.ViewID});
     }
 
-    private void Die()
+    public void Die()
     {
         PhotonNetwork.Destroy(_controller);
         CreateController();
