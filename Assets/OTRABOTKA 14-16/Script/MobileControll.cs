@@ -1,8 +1,25 @@
+using System;
 using UnityEngine;
 public class MobileControll : MonoBehaviour
 {
     [SerializeField] private float carSpeed;
     [SerializeField] private GameObject bulletPrefab;
+    public bool moveLeft = false;
+    public bool moveRight = false;
+
+    private void Update()
+    {
+        if (moveLeft)
+        {
+            MoveLeft();
+        }
+
+        if (moveRight)
+        {
+            MoveRight();
+        }
+    }
+
     public void SpawnBullet()
     {
         Instantiate(bulletPrefab, transform.GetChild(0).transform.position, Quaternion.identity);
@@ -19,4 +36,6 @@ public class MobileControll : MonoBehaviour
     {
         Move(carSpeed);
     }
+    
+    
 }

@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 389161582}
   - component: {fileID: 389161581}
   - component: {fileID: 389161580}
+  - component: {fileID: 389161583}
   m_Layer: 5
   m_Name: LeftButton
   m_TagString: Untagged
@@ -430,19 +431,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 389161581}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 593983867}
-        m_TargetAssemblyTypeName: MobileControll, Assembly-CSharp
-        m_MethodName: MoveLeft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &389161581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +470,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389161578}
   m_CullTransparentMesh: 1
+--- !u!114 &389161583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389161578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407c3873c5eb022fdba86d47b5a1434e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &499525044
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +781,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carSpeed: 1.5
   bulletPrefab: {fileID: 2588016349182746967, guid: 2bed06b0b6f68a44d88b1ebb1d68b94e, type: 3}
+  moveLeft: 0
+  moveRight: 0
 --- !u!4 &794576626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6477602032862617539, guid: 8fbfa0daf2df4a74c9fca56cff7f9958, type: 3}
@@ -851,6 +854,7 @@ GameObject:
   - component: {fileID: 1005306015}
   - component: {fileID: 1005306014}
   - component: {fileID: 1005306013}
+  - component: {fileID: 1005306016}
   m_Layer: 5
   m_Name: RightButton
   m_TagString: Untagged
@@ -920,19 +924,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1005306014}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 593983867}
-        m_TargetAssemblyTypeName: MobileControll, Assembly-CSharp
-        m_MethodName: MoveRight
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1005306014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,6 +963,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005306011}
   m_CullTransparentMesh: 1
+--- !u!114 &1005306016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005306011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4122529fe8fd9840f89da7c724f00ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1126771580
 GameObject:
   m_ObjectHideFlags: 0
