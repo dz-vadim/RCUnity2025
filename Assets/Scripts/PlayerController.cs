@@ -1,163 +1,100 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-using System.IO;
-using Photon.Realtime;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
-public class PlayerController : MonoBehaviourPunCallbacks, IDamageble
+
+public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private GameObject playerCamera;
-    [SerializeField] private float walkSpeed, sprintSpeed, mouseSensitivity, jumpForce, smoothTime;
-    private float _verticalLookRotation;
-    private bool _isGround;
-    private Vector3 _smoothMove;
-    private Vector3 _moveAmount;
-    private Rigidbody _rb;
-    private PhotonView _pnView;
+    private const float gravity = 9.8f, speed = 5f, jumpForce = 8f, turnSpeed = 90f;
+    private float _verticalSpeed = 0f, _mouseX = 0f, _mouseY = 0f, _currentAngleX = 0f;
 
-    [SerializeField] private Item[] items;
-    private int _itemIndex;
-    private int _prevItemIndex = -1;
+    private CharacterController _controller;
+    [SerializeField] private Camera _camera;
     
-    private float maxHealth = 100f;
-    private float currentHealth;
-    private PlayerManager _playerManager;
-    
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody>();
-        _pnView = GetComponent<PhotonView>();
-        _playerManager = PhotonView.Find((int)_pnView.InstantiationData[0]).GetComponent<PlayerManager>();
-    }
+    [SerializeField] GameObject particleObject, tool;
+    private const float hitScaleSpeed = 15f;
+    private float hitLastTime = 0f;
 
-    private void Start()
+    private void Dig(Block block)
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        if (!_pnView.IsMine)
+        if (Time.time - hitLastTime > 1 / hitScaleSpeed)
         {
-            Destroy(playerCamera);
-            Destroy(_rb);
-        }
-        else
-        {
-            EquipItem(0);
-        }
-    }
-
-    private void Update()
-    {
-        if (!_pnView.IsMine)
-        {
-            return;
-        }
-        Look();
-        Move();
-        Jump();
-        SelectWeapon();
-        UseItem();
-    }
-
-    private void UseItem()
-    {
-        items[_itemIndex].Use();
-    }
-
-    private void SelectWeapon()
-    {
-        for (int i = 0; i < items.Length; i++)
-        {
-            if (Input.GetKeyDown((i + 1).ToString()))
+            tool.GetComponent<Animator>().SetTrigger("attack");
+            hitLastTime = Time.time;
+            block.health -= tool.GetComponent<Tool>().damageToBlock;
+            GameObject go = Instantiate(particleObject, 
+                                        block.gameObject.transform.position, 
+                                        Quaternion.identity);
+            go.GetComponent<ParticleSystemRenderer>().material =
+                block.gameObject.GetComponent<MeshRenderer>().material;
+            if (block.health <= 0)
             {
-                EquipItem(i);
-                break;
+                block.DestroyBehaviour();
             }
         }
     }
 
-    private void EquipItem(int  index)
+    private void ObjectInteraction(GameObject tempObject)
     {
-        if (index == _prevItemIndex)
+        switch (tempObject.tag) 
         {
-            return;
+            case "Block":
+                Dig(tempObject.GetComponent<Block>());
+                break;
+            case "Enemy":
+                break;
         }
-        _itemIndex = index;
-        items[_itemIndex].itemGameObject.SetActive(true);
-        if (_prevItemIndex != -1)
-        {
-            items[_prevItemIndex].itemGameObject.SetActive(false);
-        }
-        _prevItemIndex = _itemIndex;
-        Hashtable hash =  new Hashtable();
-        hash.Add("index",  _itemIndex);
-        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+    }
+    
+    void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        _controller = GetComponent<CharacterController>();
     }
 
-    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+    private void RotateCharacter()
     {
-        if (!_pnView.IsMine && targetPlayer == _pnView.Owner)
-        {
-            EquipItem((int)changedProps["index"]);
-        }
-    }
-
-    private void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)  && _isGround)
-        {
-            _rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        }
-    }
-
-    public void GroundState(bool isGround)
-    {
-        this._isGround = isGround;
-    }
-    private void FixedUpdate()
-    {
-        if (!_pnView.IsMine)
-        {
-            return;
-        }
-        _rb.MovePosition(_rb.position + transform.TransformDirection(_moveAmount) * Time.fixedDeltaTime);
-    }
-
-    private void Look()
-    {
-        transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * mouseSensitivity);
-        _verticalLookRotation +=  Input.GetAxis("Mouse Y") * mouseSensitivity;
-        _verticalLookRotation = Mathf.Clamp(_verticalLookRotation, -80f, 90f);
+        _mouseX = Input.GetAxis("Mouse X");
+        _mouseY = Input.GetAxis("Mouse Y");
         
-        playerCamera.transform.localEulerAngles = Vector3.left * _verticalLookRotation;
-    }
-    private void Move()
-    {
-        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        moveDirection.Normalize();
-        _moveAmount = Vector3.SmoothDamp(_moveAmount,
-            moveDirection * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed),
-            ref _smoothMove,
-            smoothTime);
+        transform.Rotate(new Vector3(0f, _mouseX * turnSpeed * Time.deltaTime, 0f));
+        _currentAngleX += _mouseY * turnSpeed * Time.deltaTime * -1f;
+        _currentAngleX = Mathf.Clamp(_currentAngleX, -60f, 60f);
+        
+        _camera.transform.localEulerAngles = new Vector3(_currentAngleX, 0f, 0f);
     }
 
-    public override void OnJoinedRoom()
-    {  
-        //PhotonNetwork.Instantiate(Path.Combine("PlayerManager"), Vector3.zero, Quaternion.identity);
-        print(PhotonNetwork.CurrentRoom.Players);
-    }
-
-    public void TakeDamage(float damage)
+    private void MoveCharacter()
     {
-        _pnView.RPC(nameof(RPC_Damage),  RpcTarget.All, damage);
-    }
-
-    [PunRPC]
-    void RPC_Damage(float damage)
-    {
-        if(!_pnView.IsMine) return;
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        Vector3 velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        velocity = transform.TransformDirection(velocity) * speed;
+        
+        if (_controller.isGrounded)
         {
-            _playerManager.Die();
+            _verticalSpeed = 0f;
+            if (Input.GetButton("Jump"))
+            {
+                _verticalSpeed = jumpForce;
+            }
         }
+        
+        _verticalSpeed -= gravity * Time.deltaTime;
+        velocity.y = _verticalSpeed;
+        _controller.Move(velocity * Time.deltaTime);
     }
+    
+    void Update()
+    {
+        RotateCharacter();
+        MoveCharacter();
+        RaycastHit hit;
+        if (Physics.Raycast(_camera.transform.position,
+                    _camera.transform.forward, out hit, 5f))
+        {
+            if (Input.GetMouseButton(0))
+            {
+                ObjectInteraction(hit.transform.gameObject);
+            }
+        }
+    }   
 }
