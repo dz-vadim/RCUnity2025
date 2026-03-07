@@ -18,24 +18,21 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.time - hitLastTime > 1 / hitScaleSpeed)
         {
-            tool.GetComponent<Animator>().SetTrigger("attack");
+            tool.GetComponent<Animator>().SetTrigger("Attack");
             hitLastTime = Time.time;
             block.health -= tool.GetComponent<Tool>().damageToBlock;
-            GameObject go = Instantiate(particleObject, 
-                                        block.gameObject.transform.position, 
-                                        Quaternion.identity);
-            go.GetComponent<ParticleSystemRenderer>().material =
-                block.gameObject.GetComponent<MeshRenderer>().material;
+            GameObject go = Instantiate(particleObject, block.gameObject.transform.position, Quaternion.identity);
+            go.GetComponent<ParticleSystemRenderer>().material = block.gameObject.GetComponent<MeshRenderer>().material;
             if (block.health <= 0)
             {
                 block.DestroyBehaviour();
             }
         }
     }
-
+    
     private void ObjectInteraction(GameObject tempObject)
     {
-        switch (tempObject.tag) 
+        switch (tempObject.tag)
         {
             case "Block":
                 Dig(tempObject.GetComponent<Block>());
@@ -44,7 +41,6 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
-    
     void Start()
     {
         Cursor.visible = false;
@@ -82,19 +78,19 @@ public class PlayerController : MonoBehaviour
         velocity.y = _verticalSpeed;
         _controller.Move(velocity * Time.deltaTime);
     }
-    
+
     void Update()
     {
         RotateCharacter();
         MoveCharacter();
         RaycastHit hit;
         if (Physics.Raycast(_camera.transform.position,
-                    _camera.transform.forward, out hit, 5f))
+                _camera.transform.forward, out hit, 5f))
         {
             if (Input.GetMouseButton(0))
             {
                 ObjectInteraction(hit.transform.gameObject);
             }
         }
-    }   
+    }
 }
