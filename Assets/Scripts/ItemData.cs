@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[SerializeField]
+[Serializable]
 public class ItemData
 { 
     public string name;
@@ -18,14 +19,5 @@ public class ItemData
         this.count = count;
         this.isUniq = isUniq;
         this.description = description;
-    }
-    void Start()
-    {
-        
-    }
-    
-    void Update()
-    {
-        
     }
 }
