@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -14,15 +15,23 @@ public class PlayerController : MonoBehaviour
     private const float hitScaleSpeed = 15f;
     private float hitLastTime = 0f;
 
+    private InventoryManager inventoryManager;
+    public List<ItemData> inventoryItems, currentChestItems;
+    private Transform itemParent;
+    public bool canMove = true;
+
     private void Dig(Block block)
     {
         if (Time.time - hitLastTime > 1 / hitScaleSpeed)
         {
-            tool.GetComponent<Animator>().SetTrigger("Attack");
+            tool.GetComponent<Animator>().SetTrigger("attack");
             hitLastTime = Time.time;
             block.health -= tool.GetComponent<Tool>().damageToBlock;
-            GameObject go = Instantiate(particleObject, block.gameObject.transform.position, Quaternion.identity);
-            go.GetComponent<ParticleSystemRenderer>().material = block.gameObject.GetComponent<MeshRenderer>().material;
+            GameObject go = Instantiate(particleObject, 
+                                        block.gameObject.transform.position, 
+                                        Quaternion.identity);
+            go.GetComponent<ParticleSystemRenderer>().material =
+                block.gameObject.GetComponent<MeshRenderer>().material;
             if (block.health <= 0)
             {
                 block.DestroyBehaviour();
@@ -36,16 +45,24 @@ public class PlayerController : MonoBehaviour
         {
             case "Block":
                 Dig(tempObject.GetComponent<Block>());
-                break;
+                    break;
             case "Enemy":
+                break;
+            case "Chest":
+                currentChestItems = tempObject.GetComponent<Chest>().chestItems;
+                OpenChest();
                 break;
         }
     }
-    void Start()
+    void Awake()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         _controller = GetComponent<CharacterController>();
+        inventoryManager = FindObjectOfType<InventoryManager>();
+        itemParent = GameObject.Find("InventoryContent").transform;
+        inventoryManager.CreateItem(0, inventoryItems);
+        canMove = true;
     }
 
     private void RotateCharacter()
@@ -55,7 +72,7 @@ public class PlayerController : MonoBehaviour
         
         transform.Rotate(new Vector3(0f, _mouseX * turnSpeed * Time.deltaTime, 0f));
         _currentAngleX += _mouseY * turnSpeed * Time.deltaTime * -1f;
-        _currentAngleX = Mathf.Clamp(_currentAngleX, -60f, 60f);
+        _currentAngleX = Mathf.Clamp(_currentAngleX, -90f, 90f);
         
         _camera.transform.localEulerAngles = new Vector3(_currentAngleX, 0f, 0f);
     }
@@ -78,19 +95,89 @@ public class PlayerController : MonoBehaviour
         velocity.y = _verticalSpeed;
         _controller.Move(velocity * Time.deltaTime);
     }
+    
+    
 
     void Update()
     {
-        RotateCharacter();
-        MoveCharacter();
-        RaycastHit hit;
-        if (Physics.Raycast(_camera.transform.position,
-                _camera.transform.forward, out hit, 5f))
+        if (canMove)
         {
-            if (Input.GetMouseButton(0))
+            RotateCharacter();
+            MoveCharacter();
+            RaycastHit hit;
+            if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, 5f))
             {
-                ObjectInteraction(hit.transform.gameObject);
+                if (Input.GetMouseButton(0))
+                {
+                    ObjectInteraction(hit.transform.gameObject);
+                }
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.E) &&
+            !inventoryManager.inventoryPanel.activeSelf)
+        {
+            OpenInventory();
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            CloseInventoryPanels();
+        }
+    }
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.name.StartsWith("mini"))
+        {
+            inventoryManager.CreateItem(2, inventoryItems);
+            Destroy(col.gameObject);
+        }
+    }
+    void OpenInventory()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        canMove = false;
+
+        inventoryManager.inventoryPanel.SetActive(true);
+        if (inventoryItems.Count > 0)
+        {
+            for (int i = 0; i < inventoryItems.Count; i++)
+            {
+                inventoryManager.InstantiatingItem(inventoryItems[i], itemParent, inventoryManager.inventorySlots);
             }
         }
     }
+    void OpenChest()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        canMove = false;
+        if (!inventoryManager.chestPanel.activeSelf)
+        {
+            inventoryManager.chestPanel.SetActive(true);
+            Transform itemParent = GameObject.Find("ChestContent").transform;
+            for (int i = 0; i < currentChestItems.Count; i++)
+            {
+                inventoryManager.InstantiatingItem(currentChestItems[i], itemParent, inventoryManager.currentChestSlots);
+            }
+        }
+    }
+    void CloseInventoryPanels()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        canMove = true;
+        foreach (GameObject slot in inventoryManager.currentChestSlots)
+        {
+            Destroy(slot);
+        }
+        foreach (GameObject slot in inventoryManager.inventorySlots)
+        {
+            Destroy(slot);
+        }
+        inventoryManager.currentChestSlots.Clear();
+        inventoryManager.inventorySlots.Clear();
+        inventoryManager.inventoryPanel.SetActive(false);
+        inventoryManager.chestPanel.SetActive(false);
+    }
+    
 }

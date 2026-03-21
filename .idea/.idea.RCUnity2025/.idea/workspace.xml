@@ -4,7 +4,64 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4384747-5b82-4bda-92ab-c3bc4d98970f" name="Changes" comment="" />
+    <list default="true" id="f4384747-5b82-4bda-92ab-c3bc4d98970f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.RCUnity2025/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RCUnity2025/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ItemFrame (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ItemFrame (1).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/New Material.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/New Material.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/blinn1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/blinn1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mesh.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mesh/4.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mesh/4.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Meshes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Meshes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/BedHeart.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/BedHeart.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Heart.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Heart.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BorderImage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/BorderImage.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BorderImage.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/BorderImage.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Chest.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Chest.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Grass.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Grass.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Ground.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Ground.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/IronSword.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/IronSword.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pickaxe.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/pickaxe.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/14.02.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/14.02.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/eduScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/eduScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/HeartClick.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/HeartClick.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/HeartScript.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/HeartScript.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/ScoreManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/ScoreManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Spawner.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Spawner.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Chest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Chest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Chest.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Chest.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InventoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/InventoryManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InventoryManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/InventoryManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ItemData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ItemData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelGinerator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelGinerator.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Slot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Slot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Slot.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Slot.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures.meta" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
