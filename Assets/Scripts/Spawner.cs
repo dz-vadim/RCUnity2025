@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject itemPrefab;
+    [SerializeField] private GameObject[] itemPrefab;
     Vector3 spawnPosition;
 
     private void Start()
@@ -17,8 +13,9 @@ public class Spawner : MonoBehaviour
 
     private void SpawnItem()
     {
+        int index = Random.Range(0, itemPrefab.Length);
         spawnPosition.x = Random.Range(-1.5f, 1.5f);
-        GameObject item = Instantiate(itemPrefab, spawnPosition, Quaternion.identity);
+        GameObject item = Instantiate(itemPrefab[index], spawnPosition, Quaternion.identity);
         Rigidbody rb = item.GetComponent<Rigidbody>();
         Vector3 direction = transform.position + Vector3.up * 10f;
         direction -= spawnPosition;

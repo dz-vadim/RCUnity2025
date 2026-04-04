@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class miniGameManager : MonoBehaviour
 {
-    private int health = 3;
+    [SerializeField] private int health = 3;
 
     public void Damage(int amount)
     {
