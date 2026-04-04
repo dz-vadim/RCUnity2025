@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject slotPrefab;
-    public GameObject inventoryPanel, chestPanel;
+    public GameObject inventoryPanel, chestPanel, descriptionPanel;
     public GameObject invContent, chestContent;
     public ItemData[] items;
     public List<GameObject> inventorySlots = new List<GameObject>();
@@ -14,15 +14,17 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-/*        inventoryPanel = GameObject.Find("TotalInventoryPanel");
+        /*inventoryPanel = GameObject.Find("TotalInventoryPanel");
         chestPanel = GameObject.Find("ChestPanel");
         invContent = GameObject.Find("InventoryContent");
-        chestContent = GameObject.Find("ChestContent");*/
+        chestContent = GameObject.Find("ChestContent");
+        descriptionPanel = GameObject.Find("DescriptionPanel");*/
     }
     private void Start()
     {
         inventoryPanel.SetActive(false);
         chestPanel.SetActive(false);
+        descriptionPanel.SetActive(false);
     }
     public void CreateItem(int itemId, List<ItemData> itemsList)
     {
