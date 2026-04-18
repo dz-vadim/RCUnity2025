@@ -771,11 +771,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: bff62153-9658-48bf-8722-5b20aa651525
+  cloudProjectId: 
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: RCUnity2025
-  organizationId: robocode-test-organization-83c5e4f4-7a07-453c-90c9-90be40850f14
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
